@@ -10,7 +10,6 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    # Rule for the ELB DNS (no host means it matches all)
     - http:
         paths:
           - path: /api
@@ -36,25 +35,6 @@ spec:
                   number: 3500
           - path: /started
             pathType: Exact
-            backend:
-              service:
-                name: api
-                port:
-                  number: 3500
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 3000
-
-    # Optional: Keep domain-based access too
-    - host: amanpathakdevops.study
-      http:
-        paths:
-          - path: /api
-            pathType: Prefix
             backend:
               service:
                 name: api
